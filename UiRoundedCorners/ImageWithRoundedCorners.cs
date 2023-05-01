@@ -12,7 +12,7 @@ namespace Nobi.UiRoundedCorners {
 		[HideInInspector, SerializeField] private MaskableGraphic image;
 
 		private void OnValidate() {
-			if (Application.isPlaying || material == null) {
+			if (Application.isPlaying) {
 				Validate();
 				Refresh();
 			}
@@ -25,7 +25,7 @@ namespace Nobi.UiRoundedCorners {
 		}
 
 		private void OnEnable() {
-			if (Application.isPlaying || material == null) {
+			if (Application.isPlaying) {
 				Validate();
 				Refresh();
 			}
