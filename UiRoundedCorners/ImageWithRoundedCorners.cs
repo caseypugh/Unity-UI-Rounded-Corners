@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Nobi.UiRoundedCorners {
@@ -12,8 +12,10 @@ namespace Nobi.UiRoundedCorners {
 		[HideInInspector, SerializeField] private MaskableGraphic image;
 
 		private void OnValidate() {
-			Validate();
-			Refresh();
+			if (Application.isPlaying || material == null) {
+				Validate();
+				Refresh();
+			}
 		}
 
 		private void OnDestroy() {
@@ -23,12 +25,14 @@ namespace Nobi.UiRoundedCorners {
 		}
 
 		private void OnEnable() {
-			Validate();
-			Refresh();
+			if (Application.isPlaying || material == null) {
+				Validate();
+				Refresh();
+			}
 		}
 
 		private void OnRectTransformDimensionsChange() {
-			if (enabled && material != null) {
+			if (enabled && material != null && Application.isPlaying) {
 				Refresh();
 			}
 		}
